@@ -1,9 +1,12 @@
 
 import 'package:firstflutter/AppConstants.dart';
+import 'package:firstflutter/models/Station.dart';
+import 'package:firstflutter/pages/AddTabs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
 
 CircleMarker perimetrecircle = CircleMarker(point: LatLng(33.699010, -7.383426), radius: 150, color: Colors.lightBlue.withOpacity(0.2));
@@ -16,7 +19,13 @@ class HomePage extends StatefulWidget {
 
 class MyPage extends State<HomePage> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    fetchStation();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 33, 32, 32),
@@ -67,13 +76,17 @@ class MyPage extends State<HomePage> {
               )
             ],
           ),
-          const Column(
-            children: [
-            
-            ],
-          )
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AddTabPage())
+          );
+        },
+        child: const Icon(Icons.add),
+        ),
     );
   }
 }
@@ -91,6 +104,7 @@ class FilterForm extends StatefulWidget{
 class FilterFromState extends State<FilterForm>{
   final _formKey = GlobalKey<FilterFromState>();
   double perimetre = 0;
+  
   
   @override
   Widget build(BuildContext context) {
