@@ -25,7 +25,6 @@ class MyPage extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    fetchStation();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 33, 32, 32),

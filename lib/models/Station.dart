@@ -31,7 +31,7 @@ class Station {
 
 static Future<void> createStation(String name, String city) async {
 try {
-  final response = await http.get(Uri.parse('http://localhost:8084/stations') );
+  final response = await http.get(Uri.parse('http://127.0.0.1:8084/stations') );
   if (response.statusCode == 200) {
     // Handle a successful response here
     // Parse the data, update the UI, etc.
